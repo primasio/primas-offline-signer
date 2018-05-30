@@ -1,0 +1,52 @@
+eth_addr: http://localhost:8545
+log_path: kdata/log
+log_level: debug
+nonce: 2
+keystore: kdata/keystore
+passphrase: '123456'
+gas_limit: 4000000
+gas_price: 100000000000
+chain_id: 3
+contracts:
+- name: metadata
+  address: 0x500f6bf4d6416891dae54bba8f8c049ede665954
+  abi: '[{"constant":false,"inputs":[{"name":"articleDNA","type":"bytes"},{"name":"groupsDNA","type":"bytes"},{"name":"signature","type":"bytes"}],"name":"share","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"title","type":"bytes"},{"name":"contentHash","type":"bytes"},{"name":"license","type":"bytes"},{"name":"extras","type":"bytes"},{"name":"blockHash","type":"bytes"},{"name":"signature","type":"bytes"},{"name":"DNA","type":"bytes"}],"name":"publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"articleDNA","type":"bytes"},{"name":"groupDNA","type":"bytes"},{"name":"contentHash","type":"bytes"},{"name":"signature","type":"bytes"}],"name":"comment","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"contentAddress","type":"address"}],"name":"updateContentContract","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"articleDNA","type":"bytes"},{"name":"groupDNA","type":"bytes"},{"name":"signature","type":"bytes"}],"name":"like","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"title","type":"bytes"},{"indexed":false,"name":"contentHash","type":"bytes"},{"indexed":false,"name":"license","type":"bytes"},{"indexed":false,"name":"extras","type":"bytes"},{"indexed":false,"name":"blockHash","type":"bytes"},{"indexed":false,"name":"signature","type":"bytes"},{"indexed":false,"name":"DNA","type":"bytes"}],"name":"PublishLog","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"articleDNA","type":"bytes"},{"indexed":false,"name":"groupDNA","type":"bytes"},{"indexed":false,"name":"signature","type":"bytes"}],"name":"LikeLog","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"articleDNA","type":"bytes"},{"indexed":false,"name":"groupDNA","type":"bytes"},{"indexed":false,"name":"ContentHash","type":"bytes"},{"indexed":false,"name":"signature","type":"bytes"}],"name":"CommentLog","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"articleDNA","type":"bytes"},{"indexed":false,"name":"groupsDNA","type":"bytes"},{"indexed":false,"name":"signature","type":"bytes"}],"name":"ShareLog","type":"event"}]'
+  byc: ""
+- name: content
+  address: 0xef61772a3f181a1379b209557a740a2f0d8dcf28
+  abi: '[{"constant":false,"inputs":[{"name":"articleDNA","type":"bytes"},{"name":"groupDNA","type":"bytes"},{"name":"contentHash","type":"bytes"},{"name":"signature","type":"bytes"},{"name":"userAddress","type":"address"}],"name":"comment","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"articleDNA","type":"bytes"},{"name":"groupDNA","type":"bytes"},{"name":"signature","type":"bytes"},{"name":"userAddress","type":"address"}],"name":"like","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"articleDNA","type":"bytes"},{"name":"groupsDNA","type":"bytes"},{"name":"signature","type":"bytes"},{"name":"userAddress","type":"address"}],"name":"share","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"title","type":"bytes"},{"name":"contentHash","type":"bytes"},{"name":"license","type":"bytes"},{"name":"extras","type":"bytes"},{"name":"blockHash","type":"bytes"},{"name":"signature","type":"bytes"},{"name":"DNA","type":"bytes"},{"name":"userAddress","type":"address"}],"name":"publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_tokenAddress","type":"address"},{"name":"_metadataAddress","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]'
+  byc: ""
+- name: group
+  address: 0x5ccbc10e1b133187e21ab3ac6e6b6d961a167c38
+  abi: '[{"constant":false,"inputs":[{"name":"DNA","type":"bytes"},{"name":"memberAddress","type":"address"},{"name":"signature","type":"bytes"},{"name":"ownerAddress","type":"address"}],"name":"removeMemberByOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"DNA","type":"bytes"},{"name":"signature","type":"bytes"},{"name":"memberAddress","type":"address"}],"name":"removeMember","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"DNA","type":"bytes"},{"name":"signature","type":"bytes"},{"name":"memberAddress","type":"address"}],"name":"addMember","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"DNA","type":"bytes"},{"name":"title","type":"bytes"},{"name":"description","type":"bytes"},{"name":"signature","type":"bytes"},{"name":"userAddress","type":"address"}],"name":"create","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"tokenAddress","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"title","type":"bytes"},{"indexed":false,"name":"description","type":"bytes"},{"indexed":false,"name":"signature","type":"bytes"}],"name":"CreateLog","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"groupDNA","type":"bytes"},{"indexed":false,"name":"signature","type":"bytes"}],"name":"AddMemberLog","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"groupDNA","type":"bytes"},{"indexed":false,"name":"signature","type":"bytes"}],"name":"RemoveMemberLog","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"groupDNA","type":"bytes"},{"indexed":false,"name":"groupMemberAddress","type":"address"},{"indexed":false,"name":"signature","type":"bytes"}],"name":"RemoveMemberByOwnerLog","type":"event"}]'
+  byc: ""
+- name: user
+  address: 0x15549387b1fa2a2cd050be68df040405caa1937e
+  abi: '[{"constant":false,"inputs":[{"name":"icon","type":"string"},{"name":"signature","type":"bytes"},{"name":"user","type":"address"}],"name":"updateUserIcon","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"timestamp","type":"string"},{"name":"signature","type":"bytes"},{"name":"user","type":"address"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"name","type":"string"},{"name":"signature","type":"bytes"},{"name":"user","type":"address"}],"name":"updateUserName","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"tokenAddress","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"userAddress","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"UserTokenBurnLog","type":"event"}]'
+  byc: ""
+- name: token
+  address: 0x04d2024dac72a41879250b6c07ecc7e84b27705e
+  abi: '[{"constant": true,"inputs": [{"name": "addr","type": "address"},{"name":
+    "roleName","type": "string"}],"name": "checkRole","outputs": [],"payable": false,"stateMutability":
+    "view","type": "function"},{"constant": false,"inputs": [{"name": "addr","type":
+    "address"},{"name": "roleName","type": "string"}],"name": "removeRole","outputs":
+    [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant":
+    true,"inputs": [{"name": "addr","type": "address"},{"name": "roleName","type":
+    "string"}],"name": "hasRole","outputs": [{"name": "","type": "bool"}],"payable":
+    false,"stateMutability": "view","type": "function"},{"constant": false,"inputs":
+    [{"name": "addr","type": "address"},{"name": "roleName","type": "string"}],"name":
+    "addRole","outputs": [],"payable": false,"stateMutability": "nonpayable","type":
+    "function"},{"anonymous": false,"inputs": [{"indexed": false,"name": "addr","type":
+    "address"},{"indexed": false,"name": "roleName","type": "string"}],"name": "RoleAdded","type":
+    "event"},{"anonymous": false,"inputs": [{"indexed": false,"name": "addr","type":
+    "address"},{"indexed": false,"name": "roleName","type": "string"}],"name": "RoleRemoved","type":
+    "event"}]'
+  byc: ""
+- name: incentives
+  address: 0x7b517118468ed4e5f38ac51203ca6a033f30d9fc
+  abi: '[{"constant":false,"inputs":[{"name":"recipients","type":"address[]"},{"name":"amounts","type":"uint256[]"}],"name":"grantIncentives","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_nodeAddress","type":"address"}],"name":"updateNode","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"tokenAddress","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]'
+  byc: ""
+- name: publish
+  address: 0x9fe47adee278e668ffe8018dec1ad551440c98ae
+  abi: '[{"constant":false,"inputs":[{"name":"userAddress","type":"address[]"}],"name":"publishAddress","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"DNA","type":"bytes32[]"},{"name":"userAddress","type":"address[]"}],"name":"publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"DNA","type":"bytes32"},{"indexed":false,"name":"userAddress","type":"address"}],"name":"PublishLog","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"userAddress","type":"address"}],"name":"UsersLog","type":"event"}]'
+  byc: ""
