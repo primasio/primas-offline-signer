@@ -4,6 +4,7 @@ log_level: debug
 nonce: 2
 keystore: kdata/keystore
 passphrase: '123456'
+account_address: ''s
 gas_limit: 4000000
 gas_price: 100000000000
 chain_id: 3

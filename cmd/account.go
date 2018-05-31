@@ -29,12 +29,6 @@ func AccountCmd() cli.Command {
 
 			logger.Info("key store file", "file", cfg.KeystoreDir)
 
-			//a, err := keystore.StoreKey(cfg.KeystoreDir, cfg.PassWD, keystore.LightScryptN, keystore.LightScryptP)
-			//if err != nil {
-			//	logger.Error("keystore.StoreKey error", "err", err)
-			//	panic(err.Error())
-			//}
-
 			entropy, err := bip39.NewEntropy(128)
 			if err != nil {
 				panic(err.Error())
@@ -47,7 +41,6 @@ func AccountCmd() cli.Command {
 
 			logger.Info("Mnemonic", "msg", mnemonic)
 
-			// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
 			seed := bip39.NewSeed(mnemonic, "")
 
 			masterKey, err := bip32.NewMasterKey(seed)

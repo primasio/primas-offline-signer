@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"github.com/inconshreveable/log15"
-	"github.com/kooksee/pstoff/config"
 	"github.com/urfave/cli"
-	kts "github.com/kooksee/pstoff/types"
+	kts "github.com/primasio/contract-safe-deploy/types"
+	"github.com/primasio/contract-safe-deploy/config"
 )
 
 var (

@@ -15,12 +15,8 @@ func RunCmd() {
 		DeployCmd(),
 		TxCmd(),
 		AccountCmd(),
-		TestCmd(),
-		AddruleCmd(),
 		SignCmd(),
 		PackCmd(),
-		AddWhiteListCmd(),
-		JoinNodeCmd(),
 		TransferCmd(),
 	}
 

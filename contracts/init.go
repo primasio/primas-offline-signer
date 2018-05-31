@@ -1,9 +1,9 @@
 package contracts
 
 import (
-	"github.com/kooksee/pstoff/config"
 	"fmt"
 	"github.com/inconshreveable/log15"
+	"github.com/primasio/contract-safe-deploy/config"
 )
 
 var cfg *config.Config

@@ -15,11 +15,9 @@ func DeployCmd() cli.Command {
 		Usage:   "deploy contract",
 		Flags: []cli.Flag{
 			inputFileFlag(),
-			//outputFileFlag(),
 		},
 		Action: func(c *cli.Context) error {
 			cfg.InitEthClient()
-			//contracts.Init()
 
 			d, err := ioutil.ReadFile(cfg.IFile)
 			if err != nil {

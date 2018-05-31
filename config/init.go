@@ -25,7 +25,6 @@ type Contract struct {
 	Byc     string `yaml:"byc"`
 }
 type Config struct {
-	isNonce      bool
 	ethClient    *ethclient.Client
 	l            log.Logger
 	cfgFile      string
@@ -38,16 +37,15 @@ type Config struct {
 	OFile  string `yaml:"-"`
 	PassWD string `yaml:"-"`
 
-	EthAddr     string     `yaml:"eth_addr"`
-	LogPath     string     `yaml:"log_path"`
-	LogLevel    string     `yaml:"log_level"`
-	Nonce       uint64     `yaml:"nonce"`
-	KeystoreDir string     `yaml:"keystore"`
-	Passphrase  string     `yaml:"passphrase"`
-	GasLimit    int        `yaml:"gas_limit"`
-	Gasprice    int        `yaml:"gas_price"`
-	ChainId     int        `yaml:"chain_id"`
-	Contracts   []Contract `yaml:"contracts"`
+	EthAddr        string     `yaml:"eth_addr"`
+	Nonce          uint64     `yaml:"nonce"`
+	KeystoreDir    string     `yaml:"keystore"`
+	Passphrase     string     `yaml:"passphrase"`
+	AccountAddress string     `yaml:"account_address"`
+	GasLimit       int        `yaml:"gas_limit"`
+	Gasprice       int        `yaml:"gas_price"`
+	ChainId        int        `yaml:"chain_id"`
+	Contracts      []Contract `yaml:"contracts"`
 }
 
 func (c *Config) LoadConfig() {
@@ -63,7 +61,6 @@ func (c *Config) LoadConfig() {
 	}
 
 	c.cfgFile = path.Join(c.home, "kdata.yaml")
-	instance.LogPath = path.Join(c.home, "log")
 	instance.KeystoreDir = path.Join(c.home, "keystore")
 }
 
@@ -94,29 +91,17 @@ func (c *Config) InitNode() {
 
 func (t *Config) InitLog() {
 	t.l = log.New()
-	if t.LogLevel != "error" {
-		ll, err := log.LvlFromString(t.LogLevel)
-		if err != nil {
-			panic(err.Error())
-		}
-		t.l.SetHandler(log.LvlFilterHandler(ll, log.StreamHandler(os.Stdout, log.TerminalFormat())))
-	} else {
-		h, err := log.FileHandler(t.LogPath, log.LogfmtFormat())
-		if err != nil {
-			t.l.Error(err.Error())
-			panic(err.Error())
-		}
-		log.MultiHandler(
-			log.LvlFilterHandler(log.LvlError, log.StreamHandler(os.Stderr, log.LogfmtFormat())),
-			h,
-		)
+	ll, err := log.LvlFromString("debug")
+	if err != nil {
+		panic(err.Error())
 	}
+	t.l.SetHandler(log.LvlFilterHandler(ll, log.StreamHandler(os.Stdout, log.TerminalFormat())))
 }
 
 func (c *Config) InitEthClient() {
 	client, err := ethclient.Dial(c.EthAddr)
-	//client, err := ethclient.Dial("ws://101.132.139.155:8867")
 	if err != nil {
+		c.l.Error("以太坊连接失败")
 		panic(err.Error())
 	}
 

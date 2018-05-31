@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/kooksee/pstoff/config"
-	"github.com/kooksee/pstoff/cmd"
+	"github.com/primasio/contract-safe-deploy/config"
+	"github.com/primasio/contract-safe-deploy/cmd"
 )
 
 func main() {

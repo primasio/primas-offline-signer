@@ -4,10 +4,10 @@ import (
 	"github.com/urfave/cli"
 	"io/ioutil"
 	"fmt"
-	"github.com/kooksee/pstoff/contracts"
 	"github.com/ethereum/go-ethereum/common"
 	"strings"
 	"encoding/json"
+	"github.com/primasio/contract-safe-deploy/contracts"
 )
 
 func TransferCmd() cli.Command {

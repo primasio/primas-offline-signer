@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"encoding/json"
 	"strings"
-	"github.com/kooksee/pstoff/contracts"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/primasio/contract-safe-deploy/contracts"
 )
 
 func PackCmd() cli.Command {

@@ -4,7 +4,7 @@ import (
 	"github.com/urfave/cli"
 	"io/ioutil"
 	"github.com/ethereum/go-ethereum/core/types"
-	kts "github.com/kooksee/pstoff/types"
+	kts "github.com/primasio/contract-safe-deploy/types"
 	"github.com/ethereum/go-ethereum/common"
 	"fmt"
 	"encoding/json"
@@ -47,7 +47,7 @@ func SignCmd() cli.Command {
 					panic(err.Error())
 				}
 
-				logger.Info("info","data",string(tt1))
+				logger.Info("info", "data", string(tt1))
 
 				var tx1 *types.Transaction
 				if tx.IsCreateContract {

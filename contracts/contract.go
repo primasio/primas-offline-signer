@@ -6,7 +6,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	kts "github.com/kooksee/pstoff/types"
+	kts "github.com/primasio/contract-safe-deploy/types"
 )
 
 type Contract struct {
@@ -93,71 +93,4 @@ func (contract *Contract) Execute(method string, args ...interface{}) []byte {
 	}
 
 	return tx1
-}
-
-func (c *Contract) JoinNode(method, address string) []byte {
-	methodBytes, err := c.ABI.Pack(
-		method,
-		common.HexToAddress(address),
-	)
-	if err != nil {
-		logger.Error("JoinNode error", "err", err)
-		panic(err.Error())
-	}
-
-	tx := &kts.Tx{
-		Nonce:    cfg.GetNonce(),
-		To:       c.Address.Hex(),
-		Amount:   0,
-		GasLimit: int64(cfg.GasLimit),
-		GasPrice: int64(cfg.Gasprice),
-		Data:     methodBytes,
-	}
-
-	return tx.Encode()
-}
-
-func (contract *Contract) AddWhiteList(method string, address string) []byte {
-	methodBytes, err := contract.ABI.Pack(
-		method,
-		common.HexToAddress(address),
-	)
-	if err != nil {
-		logger.Error("AddWhiteList error", "err", err)
-		panic(err.Error())
-	}
-
-	tx := &kts.Tx{
-		Nonce:    cfg.GetNonce(),
-		To:       contract.Address.Hex(),
-		Amount:   0,
-		GasLimit: int64(cfg.GasLimit),
-		GasPrice: int64(cfg.Gasprice),
-		Data:     methodBytes,
-	}
-
-	return tx.Encode()
-}
-
-func (contract *Contract) AddRule(mthName, userAddress, roleType string) []byte {
-	methodBytes, err := contract.ABI.Pack(
-		mthName,
-		common.HexToAddress(userAddress),
-		roleType,
-	)
-	if err != nil {
-		logger.Error("AddRule error", "err", err)
-		panic(err.Error())
-	}
-
-	tx := &kts.Tx{
-		Nonce:    cfg.GetNonce(),
-		To:       contract.Address.Hex(),
-		Amount:   0,
-		GasLimit: int64(cfg.GasLimit),
-		GasPrice: int64(cfg.Gasprice),
-		Data:     methodBytes,
-	}
-
-	return tx.Encode()
 }
