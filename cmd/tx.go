@@ -64,7 +64,7 @@ func TxCmd() cli.Command {
 				panic(err.Error())
 			}
 
-			cfg.OFile = cfg.IFile + fmt.Sprintf(".output.%d.json", cfg.Nonce)
+			cfg.OFile = cfg.IFile + ".output.json"
 
 			logger.Info("output file", "file", cfg.OFile)
 

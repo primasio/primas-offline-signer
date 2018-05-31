@@ -21,13 +21,12 @@ func AccountCmd() cli.Command {
 			passwdFlag(),
 		},
 		Action: func(c *cli.Context) error {
+			logger.Info("keystore file", "file", cfg.KeystoreDir)
 
 			if cfg.PassWD == "" {
-				logger.Error("请输入传入密码参数")
-				panic("请输入传入密码参数")
+				logger.Error("请输入密码参数")
+				panic("请输入密码参数")
 			}
-
-			logger.Info("key store file", "file", cfg.KeystoreDir)
 
 			entropy, err := bip39.NewEntropy(128)
 			if err != nil {
@@ -69,9 +68,7 @@ func AccountCmd() cli.Command {
 				panic(err.Error())
 			}
 
-			logger.Info("new account", "account", aa)
 			logger.Info("account", "address", aa.Address.String())
-
 			return nil
 		},
 	}

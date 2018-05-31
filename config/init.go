@@ -24,6 +24,7 @@ type Contract struct {
 	Abi     string `yaml:"abi"`
 	Byc     string `yaml:"byc"`
 }
+
 type Config struct {
 	ethClient    *ethclient.Client
 	l            log.Logger
@@ -57,7 +58,7 @@ func (c *Config) LoadConfig() {
 	}
 
 	if err := yaml.Unmarshal(d, c); err != nil {
-		panic(fmt.Sprintf("%s\n%s", "配置文件加载错误", err.Error()))
+		panic(fmt.Sprintf("配置文件加载错误\n%s", err.Error()))
 	}
 
 	c.cfgFile = path.Join(c.home, "kdata.yaml")
@@ -79,13 +80,13 @@ func (c *Config) InitNode() {
 	c.nodeKeystore = keystore.NewKeyStore(c.KeystoreDir, keystore.LightScryptN, keystore.LightScryptP)
 
 	if len(c.nodeKeystore.Accounts()) == 0 {
-		c.l.Warn("node account not found")
+		c.l.Warn("keystore file does not exist")
 		return
 	}
 
 	c.nodeAccount = &c.nodeKeystore.Accounts()[0]
 	if err := c.nodeKeystore.Unlock(*c.nodeAccount, c.Passphrase); err != nil {
-		panic(fmt.Sprintf("%s\n%s", "账号解锁失败", err.Error()))
+		panic(fmt.Sprintf("账号解锁失败\n%s", err.Error()))
 	}
 }
 
